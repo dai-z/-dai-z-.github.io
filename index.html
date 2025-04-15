@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>叮咚上门多页面切换</title>
+    <style>
+        button {
+            padding: 10px 20px;
+            margin: 10px;
+        }
+       .page {
+            display: none;
+            border: 1px solid #ccc;
+            padding: 20px;
+        }
+        /* 复用各页面原有样式 */
+        body.login-page {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+       .login-container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            width: 350px;
+        }
+       .login-page h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+       .login-page label {
+            display: block;
+            margin-bottom: 5px;
+            color: #666;
+        }
+       .login-page input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+       .login-page button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+       .login-page button:hover {
+            background-color: #0056b3;
+        }
+       .login-page.forgot-password {
+            text-align: right;
+            margin-top: 10px;
+        }
+       .login-page.forgot-password a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+       .login-page.register-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+       .login-page.register-link a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+       .service-page {
+            background-color: #e6f7ff; /* 上门服务分类页面背景颜色 */
+        }
+       .service-page button {
+            margin: 5px;
+        }
+       .service-page.service-item {
+            display: none;
+            margin: 10px;
+            border: 1px solid #007BFF; /* 服务项边框颜色 */
+            padding: 10px;
+            background-color: #fff; /* 服务项背景颜色 */
+            list-style-type: none; /* 去除列表默认样式 */
+        }
+        body.reservation-page {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+        }
+       .reservation-page form {
+            width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+       .reservation-page label {
+            display: block;
+            margin-bottom: 5px;
+        }
+       .reservation-page input,
+       .reservation-page select,
+       .reservation-page textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+       .reservation-page button {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+       .reservation-page button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <button onclick="showPage('loginPage')">登录</button>
+    <button onclick="showPage('servicePage')">服务分类</button>
+    <button onclick="showPage('reservationPage')">服务预定</button>
+
+    <div id="loginPage" class="page login-page">
+        <div class="login-container">
+            <h2>叮咚上门 </h2>
+            <form id="loginForm">
+                <label for="username">用户名:</label>
+                <input type="text" id="username" required>
+                <label for="password">密码:</label>
+                <input type="password" id="password" required>
+                <button type="button" onclick="login()">登录</button>
+            </form>
+            <div class="forgot-password">
+                <a href="#">忘记密码？</a>
+            </div>
+            <div class="register-link">
+                <a href="#">还没有账号？立即注册</a>
+            </div>
+        </div>
+        <script>
+            function login() {
+                const username = document.getElementById('username').value;
+                const password = document.getElementById('password').value;
+                // 这里可以添加登录验证逻辑，比如发送请求到服务器验证用户名和密码
+                // 简单示例：
+                if (username === 'admin' && password === '123456') {
+                    alert('登录成功！');
+                } else {
+                    alert('用户名或密码错误，请重新输入。');
+                }
+            }
+     
